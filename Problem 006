@@ -1,0 +1,31 @@
+//The sum of the squares of the first ten natural numbers is,
+
+//1^2 + 2^2 + ... + 10^2 = 385
+//The square of the sum of the first ten natural numbers is,
+
+//(1 + 2 + ... + 10)^2 = 552 = 3025
+//Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
+
+//Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+
+
+public class SumSquareDifference
+{
+	public static void main(String[] args)
+	{
+	  //initilized variables
+		final int NUMBERS = 100;
+		int summed = 0;
+		int squared = 0;
+		//for loop to sum of squares and add the sums to be squared at the end
+		for(int i = 1; i <= NUMBERS; i++)
+		{
+			summed += i * i;
+			squared += i;
+		}
+		//square the sum
+		squared *= squared;
+		//output solution
+		System.out.println(squared - summed);
+	}
+}
