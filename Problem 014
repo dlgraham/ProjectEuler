@@ -1,0 +1,53 @@
+//The following iterative sequence is defined for the set of positive integers:
+
+//n → n/2 (n is even)
+//n → 3n + 1 (n is odd)
+
+//Using the rule above and starting with 13, we generate the following sequence:
+
+//13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+//It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+//Which starting number, under one million, produces the longest chain?
+
+//NOTE: Once the chain starts the terms are allowed to go above one million.
+
+public class CollatzSequence
+{
+	public static int CollatzLength(int numfrom)
+	{
+		int count = 1;
+		long num = numfrom;
+		//while the number isn't 1, run the collatz sequence on the number
+		while (num != 1)
+		{
+			if(num % 2 == 0)
+			{
+				num = num / 2;
+				count++;
+			}
+			else
+			{
+				num = 3 * num + 1;
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	public static void main(String[] args)
+	{
+		int maxCollatz = 0;
+		//for loop for every value from 1 until 1,000,000
+		for (int i = 1; i < 1000000; i++)
+		{
+			int collatzRun = CollatzLength(i);
+			//if the collatz sequence length is larger than the largest one found, print out the new number, final number will be largest below one million
+			if (collatzRun > maxCollatz)
+			{
+				maxCollatz = collatzRun;
+				System.out.println(i);
+			}
+		}
+	}
+}
