@@ -1,0 +1,51 @@
+//2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+
+//What is the sum of the digits of the number 2^1000?
+
+
+import java.util.Vector;
+
+public class PowerDigitSum
+{
+	public static void main(String[] args)
+	{
+		int num = 2;
+		int powerTo = 1000;
+		int sum = 1;
+		Vector<Integer> answer = new Vector<Integer>();
+		answer.add(sum);
+		
+		for(int i = 1; i <= powerTo; i++)
+		{
+		  //for each value in the solution array, multiply the value by 2
+			for (int j = 0; j < answer.size(); j++)
+			{
+				answer.set(j, answer.get(j) * 2);
+			}
+			//if the value at the highest place is ten or greater, insert a 1 into the highest place
+			if (answer.get(0) >= 10)
+			{
+				answer.set(0, answer.get(0) % 10);
+				answer.insertElementAt(1, 0);
+				
+			}
+			//for all elements in the solution array, if the element is greater than ten, increment the higher place element by 1 and mod 10 the element
+			for (int j = answer.size() - 1; j > 0; j--)
+			{
+				if(answer.get(j) >= 10)
+				{
+					answer.set(j, answer.get(j) % 10);
+					answer.set(j - 1, answer.get(j - 1) + 1);
+				}
+			}
+		}
+		System.out.println(answer);
+		sum = 0;
+		//sum together each element in the array for the solution
+		for (int i = 0; i < answer.size(); i++)
+		{
+			sum += answer.get(i);
+		}
+		System.out.println(sum);
+	}	
+}
