@@ -1,0 +1,21 @@
+
+public class NumberSpiralDiagonals
+{
+	public static void main(String[] args)
+	{
+		int sum = 1;
+		int number = 1;
+		for(int i = 2; number < 1001 * 1001; i = i + 2)
+		{
+			number += i;
+			sum += number;
+			number += i;
+			sum += number;
+			number += i;
+			sum += number;
+			number += i;
+			sum += number;
+		}
+		System.out.println(sum);
+	}
+}
