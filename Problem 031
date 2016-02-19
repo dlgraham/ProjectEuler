@@ -1,0 +1,46 @@
+
+public class CoinSums
+{
+	public static void main(String[] args)
+	{
+		int check = 200;
+		int p1 = 1;
+		int p2 = 2;
+		int p5 = 5;
+		int p10 = 10;
+		int p20 = 20;
+		int p50 = 50;
+		int p100 = 100;
+		int p200 = 200;
+		int count = 0;
+		for(int i = 0; i <= check / p1; i++)
+		{
+			for(int j = 0; j <= check / p2; j++)
+			{
+				for(int k = 0; k <= check / p5; k++)
+				{
+					for(int l = 0; l <= check / p10; l++)
+					{
+						for(int m = 0; m <= check / p20; m++)
+						{
+							for(int n = 0; n <= check / p50; n++)
+							{
+								for(int o = 0; o <= check / p100; o++)
+								{
+									for(int p = 0; p <= check / p200; p++)
+									{
+										if (i * 1 + j * 2 + k * 5 + l * 10 + m * 20 + n * 50 + o * 100 + p * 200 == check)
+										{
+											count++;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		System.out.println(count);
+	}
+}
