@@ -1,0 +1,53 @@
+import java.util.Collections;
+import java.util.Vector;
+
+public class TruncatablePrimes
+{
+	public static void main(String[] args)
+	{
+		int sum = 0;
+		for(int i = 10; i < 1000000; i++)
+		{
+			if(isPrime(i))
+			{
+				boolean allPrime = true;
+				int temp = i / 10;
+				while(temp > 0 && allPrime)
+				{
+					if(!isPrime(temp))
+					{
+						allPrime = false;
+					}
+					temp /= 10;
+				}
+				if(allPrime)
+				{
+					String str = Integer.toString(i);
+					while(str.length() > 0 && allPrime)
+					{
+						temp = Integer.parseInt(str);
+						allPrime = isPrime(temp);
+						str = str.substring(1);
+					}
+					
+				}
+				if(allPrime)
+				{
+					System.out.println(i);
+					sum += i;
+				}
+			}
+		}
+		System.out.println(sum);
+	}
+	
+	private static boolean isPrime(int num)
+	{
+		if (num == 1 ) return false;
+		if (num == 2 ) return true;
+		if (num % 2 == 0) return false;
+		for (int i = 3; i * i <= num; i += 2)
+			if (num % i == 0) return false;
+		return true;
+	}
+}
