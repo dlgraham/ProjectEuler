@@ -1,0 +1,31 @@
+public class PandigitalMultiples
+{
+	public static void main(String[] args)
+	{
+		int max = 0;
+		String number;
+		for(int i = 1; i < 500000000; i++)
+		{
+			number = "";
+			for(int j = 1; number.length() < 9; j++)
+			{
+				number = number + (i * j);
+			}
+			if(number.length() == 9)
+			{
+				if(number.contains("1") && number.contains("2") &&
+						number.contains("3") && number.contains("4") &&
+						number.contains("5") && number.contains("6") &&
+						number.contains("7") && number.contains("8") &&
+						number.contains("9"))
+				{
+					if(Integer.parseInt(number) > max)
+					{
+						max = Integer.parseInt(number);
+						System.out.println(i + " : " + max);
+					}
+				}
+			}
+		}
+	}
+}
