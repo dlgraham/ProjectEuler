@@ -1,0 +1,76 @@
+import java.util.Collections;
+import java.util.Vector;
+
+public class PandigitalPrime
+{
+	public static void main(String[] args)
+	{
+		final int SIZE = 7;
+		Vector<Integer> number = new Vector<Integer>();
+		for(int i = 1; i <= SIZE; i++)
+		{
+			number.add(i);
+		}
+		int solved = 0;
+		int k = 0;
+		int l;
+		int reverse;
+		
+		while (solved != -1)
+		{
+			//System.out.println(number);
+			
+			int length = 1;
+			int num =  0;
+			for(int i = 1; i <= SIZE; i++)
+			{
+				num += number.get(SIZE - i) * length;
+				length *= 10;
+			}
+			
+			if (isPrime(num))
+			{
+				System.out.println(num);
+			}
+			
+			solved = SIZE - 2;
+			boolean found = false;
+			while(solved > - 1 && found == false)
+			{
+				if(number.get(solved) < number.get(solved + 1))
+				{
+					found = true;
+				}
+				else
+				{
+					solved--;
+				}
+			}
+			if(solved != -1)
+			{
+				k = solved;
+				l = SIZE - 1;
+				while(number.get(l) < number.get(k))
+				{
+					l--;
+				}
+				Collections.swap(number, k, l);
+				reverse = SIZE - 1;
+				for(int i = k + 1; i < reverse; i++)
+				{
+					Collections.swap(number, i, reverse);
+					reverse--;
+				}
+			}
+		}
+	}
+	
+	private static boolean isPrime(int num) {
+		if (num == 2 ) return true;
+		if (num % 2 == 0) return false;
+		for (int i = 3; i * i <= num; i += 2)
+			if (num % i == 0) return false;
+		return true;
+}
+	
+}
