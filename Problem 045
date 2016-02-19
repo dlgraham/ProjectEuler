@@ -1,0 +1,57 @@
+public class TriangularPentagonalAndHexagonal
+{
+	public static void main(String[] args)
+	{
+		long t = 285L;
+		long p = 165L;
+		long h = 143L;
+		t++;
+		p++;
+		h++;
+		long triT = triangular(t);
+		long pentP = pentagonal(p);
+		long hexH = hexagonal(h);
+		
+		boolean found = false;
+		while(found == false)
+		{
+			if(triT == pentP && pentP == hexH)
+			{
+				found = true;
+			}
+			else if(triT <= pentP && triT <= hexH)
+			{
+				t++;
+				triT = triangular(t);
+			}
+			else if(pentP <= triT && pentP <= hexH)
+			{
+				p++;
+				pentP = pentagonal(p);
+			}
+			else
+			{
+				h++;
+				hexH = hexagonal(h);
+			}
+		}
+		System.out.println("Tri_" + t + ": " + triT);
+		System.out.println("Pent_" + p + ": " + pentP);
+		System.out.println("Hex_" + h + ": " + hexH);
+	}
+	
+	public static long triangular(long i)
+	{
+		return i * (i + 1) / 2;
+	}
+	
+	public static long pentagonal(long i)
+	{
+		return i * (3 * i - 1) / 2;
+	}
+	
+	public static long hexagonal(long i)
+	{
+		return i * (2 * i - 1);
+	}
+}
