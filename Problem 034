@@ -1,0 +1,41 @@
+import java.util.Vector;
+
+public class DigitFactorials
+{
+	public static void main(String[] args)
+	{
+		Vector<Integer> number = new Vector<Integer>();
+		for(int i = 3; i < 3000000; i++)
+		{
+			number.clear();
+			int temp = i;
+			while(temp > 0)
+			{
+				number.add(factorial(temp % 10));
+				temp /= 10;
+			}
+			int sum = 0;
+			for(int j = 0; j < number.size(); j++)
+			{
+				sum += number.get(j);
+			}
+			if(sum == i)
+			{
+				System.out.println(i);
+			}
+		}
+	}
+	
+	public static int factorial(int num)
+	{
+		int value = 1;
+		if(num > 0)
+		{
+			for(; num > 0; num--)
+			{
+				value *= num;
+			}
+		}
+		return value;
+	}
+}
