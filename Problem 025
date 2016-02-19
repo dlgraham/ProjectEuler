@@ -1,0 +1,126 @@
+import projectEuler.MyBigInteger;
+public class ThousandDigitFibonacci
+{
+	public static void main(String[] args)
+	{
+		MyBigInteger number = new MyBigInteger(1);
+		MyBigInteger altNumber = new MyBigInteger(1);
+		MyBigInteger tempNumber = new MyBigInteger(1);
+		int index = 2;
+		while(number.size() < 1000)
+		{
+			tempNumber.copy(number);
+			number.add(altNumber);
+			altNumber.copy(tempNumber);
+			index++;
+			System.out.println(index + " : " + number);
+		}
+		System.out.println(index);
+		System.out.println(number.size());
+	}
+}
+package projectEuler;
+
+import java.util.Vector;
+
+public class MyBigInteger
+{
+	Vector<Integer> number = new Vector<Integer>();
+	
+	public MyBigInteger(int num)
+	{
+		while(num > 0)
+		{
+			number.add(num % 10);
+			num /= 10;
+		}
+	}
+	
+	public String toString()
+	{
+		String fullNumber = "";
+		for(int i = 0; i < number.size(); i++)
+		{
+			fullNumber = number.get(i) + fullNumber;
+		}
+		return fullNumber;
+	}
+	
+	public void copy(MyBigInteger toCopy)
+	{
+		number.clear();
+		for(int i = 0; i < toCopy.number.size(); i++)
+		{
+			number.add(toCopy.number.get(i));
+		}
+	}
+	
+	public int size()
+	{
+		return number.size();
+	}
+	
+	public void multiply(int num)
+	{
+		for(int i = 0; i < number.size(); i++)
+		{
+			number.set(i, number.get(i) * num);
+		}
+		for(int i = 0; i < number.size(); i++)
+		{
+			if(number.get(i) >= 10 && i != number.size() - 1)
+			{
+				number.set(i + 1, number.get(i+1) + number.get(i) / 10);
+				number.set(i, number.get(i) % 10);
+			}
+			else if(number.get(i) >= 10)
+			{
+				number.add(number.get(i) / 10);
+				number.set(i, number.get(i) % 10);
+			}
+		}
+	}
+	
+	public void add(MyBigInteger toAdd)
+	{
+		int larger = number.size();
+		if(toAdd.number.size() > larger)
+		{
+			larger = toAdd.number.size();
+		}
+		for(int i = 0; i < larger; i++)
+		{
+			try
+			{
+				number.set(i, number.get(i) + toAdd.number.get(i));
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+		for(int i = 0; i < number.size(); i++)
+		{
+			if(number.get(i) >= 10 && i != number.size() - 1)
+			{
+				number.set(i + 1, number.get(i+1) + number.get(i) / 10);
+				number.set(i, number.get(i) % 10);
+			}
+			else if(number.get(i) >= 10)
+			{
+				number.add(number.get(i) / 10);
+				number.set(i, number.get(i) % 10);
+			}
+		}
+	}
+	
+	public int addDigits()
+	{
+		int sum = 0;
+		for(int i = 0; i < number.size(); i++)
+		{
+			sum += number.get(i);
+		}
+		return sum;
+	}
+}
