@@ -1,0 +1,46 @@
+
+public class PentagonNumbers
+{
+	public static void main(String[] args)
+	{
+		int SIZE = 10000;
+		long min = (long)pentagon(SIZE) - pentagon(1);
+		for(long i = 1L; i < SIZE; i++)
+		{
+			for(long j = i + 1; j <= SIZE; j++)
+			{
+				long jPent = pentagon(j);
+				long iPent = pentagon(i);
+				if(isPentagon(iPent + jPent))
+				{
+					if(isPentagon(jPent - iPent))
+					{
+						System.out.println(i + " : " + j);
+						if(min > jPent - iPent)
+						{
+							min = jPent - iPent;
+							System.out.println(i + " : " + j);
+						}
+					}
+				}
+			}
+		}
+		System.out.println(min);
+	}
+	
+	public static boolean isPentagon(long i)
+	{
+		boolean isSame = false;
+		int n = (int)(1 + Math.sqrt(1 + 24 * i)) / 6;
+		if(pentagon(n) == i)
+		{
+			isSame = true;
+		}
+		return isSame;
+	}
+	
+	public static long pentagon(long i)
+	{
+		return i * (3 * i - 1) / 2;
+	}
+}
