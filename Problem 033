@@ -1,0 +1,80 @@
+
+public class DigitCancellingFractions
+{
+	public static void main(String[] args)
+	{
+		int numerator = 1;
+		int denominator = 1;
+		for(int i = 10; i < 99; i++)
+		{
+			for(int j = i + 1; j < 100; j++)
+			{
+				int a = i % 10;
+				int b = i / 10;
+				int c = j % 10;
+				int d = j / 10;
+				
+				if(i % 10 == 0)
+				{
+					
+				}
+				else if(a == c)
+				{
+					if(fractionEquals(i, j, b, d))
+					{
+						System.out.println(i + "/" + j + " : " + b + "/" + d);
+						numerator *= b;
+						denominator *= d;
+					}
+				}
+				else if(a == d)
+				{
+					if(fractionEquals(i, j, b, c))
+					{
+						System.out.println(i + "/" + j + " : " + b + "/" + c);
+						numerator *= b;
+						denominator *= c;
+					}
+				}
+				else if(b == c)
+				{
+					if(fractionEquals(i, j, a, d))
+					{
+						System.out.println(i + "/" + j + " : " + a + "/" + d);
+						numerator *= a;
+						denominator *= d;
+					}
+				}
+				else if(b == d)
+				{
+					if(fractionEquals(i, j, a, c))
+					{
+						System.out.println(i + "/" + j + " : " + a + "/" + c);
+						numerator *= a;
+						denominator *= c;
+					}
+				}
+				
+			}
+		}
+		System.out.println(numerator + "/" + denominator);
+	}
+	
+	public static boolean fractionEquals(int i, int j, int a, int b)
+	{
+		boolean equals;
+		if(j == 0 || b == 0)
+		{
+			equals = false;
+		}
+		else if(Math.abs((double) i / j - (double) a / b) < 0.00001)
+		{
+			equals = true;
+		}
+		else
+		{
+			equals = false;
+		}
+		return equals;
+	}
+}
