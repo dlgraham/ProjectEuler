@@ -1,0 +1,33 @@
+import java.math.BigInteger;
+import java.util.Vector;
+
+public class DistinctPowers
+{
+	public static void main(String[] args)
+	{
+		Vector<BigInteger> list = new Vector<BigInteger>();
+		BigInteger a;
+		BigInteger b;
+		BigInteger c;
+		for(int i = 2; i <= 100; i++)
+		{
+			a = new BigInteger(Integer.toString(i));
+			for(int j = 2; j <= 100; j++)
+			{
+				b = a;
+				b = b.pow(j);
+				list.add(b);
+			}
+		}
+		list.sort(null);
+		int count = 1;
+		for(int i = 1; i < list.size(); i++)
+		{
+			if(!list.get(i-1).equals(list.get(i)))
+			{
+				count++;
+			}
+		}
+		System.out.println(count);
+	}
+}
