@@ -1,0 +1,79 @@
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Vector;
+
+public class PandigitalProducts
+{
+	public static void main(String[] args)
+	{
+		final int SIZE = 9;
+		Vector<Integer> number = new Vector<Integer>();
+		Set<Integer> products = new TreeSet<Integer>();
+		for(int i = 1; i <= SIZE; i++)
+		{
+			number.add(i);
+		}
+		int solved = 0;
+		int k = 0;
+		int l;
+		int reverse;
+		
+		while (solved != -1)
+		{
+			System.out.println(number);
+			
+			
+			
+			if(number.get(0) * (number.get(1) * 1000 + number.get(2) * 100 + number.get(3) * 10 + number.get(4)) == number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8))
+			{
+				products.add(number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8));
+			}
+			if((number.get(0) * 10 + number.get(1)) * (number.get(2) * 100 + number.get(3) * 10 + number.get(4)) == number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8))
+			{
+				products.add(number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8));
+			}
+			if((number.get(0) * 100 + number.get(1) * 10 + number.get(2)) * (number.get(3) * 10 + number.get(4)) == number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8))
+			{
+				products.add(number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8));
+			}
+			if((number.get(0) * 1000 + number.get(1) * 100 + number.get(2) * 10 + number.get(3)) * number.get(4) == number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8))
+			{
+				products.add(number.get(5) * 1000 + number.get(6) * 100 + number.get(7) * 10 + number.get(8));
+			}
+			
+			
+			solved = SIZE - 2;
+			boolean found = false;
+			while(solved > - 1 && found == false)
+			{
+				if(number.get(solved) < number.get(solved + 1))
+				{
+					found = true;
+				}
+				else
+				{
+					solved--;
+				}
+			}
+			if(solved != -1)
+			{
+				k = solved;
+				l = SIZE - 1;
+				while(number.get(l) < number.get(k))
+				{
+					l--;
+				}
+				Collections.swap(number, k, l);
+				reverse = SIZE - 1;
+				for(int i = k + 1; i < reverse; i++)
+				{
+					Collections.swap(number, i, reverse);
+					reverse--;
+				}
+			}
+		}
+		System.out.print(products);
+	}
+}
