@@ -1,0 +1,51 @@
+import java.util.Vector;
+
+public class NonAbundantSums
+{
+	public static void main(String[] args)
+	{
+		Vector<Boolean> abundant = new Vector<Boolean>();
+		int sum;
+		for(int i = 0; i < 28123; i++)
+		{
+			sum = 0;
+			for(int j = 1; j <= (i / 2); j++)
+			{
+				if(i % j == 0)
+				{
+					sum += j;
+				}
+			}
+			if (sum > i)
+			{
+				abundant.add(true);	
+			}
+			else
+			{
+				abundant.add(false);
+			}
+		}
+		Vector<Boolean> sumOfAbundant = new Vector<Boolean>();
+		for(int i = 0; i < 28123; i++)
+		{
+			boolean sumAbundant = false;
+			for(int j = 0; j < i; j++)
+			{
+				if(abundant.get(j) == true && abundant.get(i - j) == true)
+				{
+					sumAbundant = true;
+				}
+			}
+			sumOfAbundant.add(sumAbundant);
+		}
+		sum = 0;
+		for(int i = 0; i < 28123; i++)
+		{
+			if(sumOfAbundant.get(i) == false)
+			{
+				sum += i;
+			}
+		}
+		System.out.println(sum);
+	}
+}
