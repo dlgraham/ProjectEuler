@@ -1,0 +1,63 @@
+public class QuadraticPrimes
+{
+	public static boolean isPrime(int n)
+	{
+		if (n <= 1)
+		{
+			return false;
+		}
+		for(int i = 2; i < Math.sqrt(n); i++)
+		{
+			if(n % i == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static void main(String[] args)
+	{
+		int primeCount;
+		int maxPrimeCount = 0;
+		int maxA = -999;
+		int maxB = -999;
+		int n;
+		int maxN = 0;
+		for(int a = -99999; a < 1; a = a + 2)
+		{
+			
+			for(int b = -99990; b < 100000; b++)
+			{
+				if(Math.abs(b) < Math.abs(a))
+				{
+					b = Math.abs(b);
+				}
+				while(!isPrime(b))
+				{
+					b++;
+				}
+				while(!isPrime((maxN + 1) * (maxN + 1) + (maxN + 1) * a + b))
+				{
+					b++;
+				}
+				primeCount = 0;
+				n = 0;
+				while(isPrime(n * n + a * n + b))
+				{
+					primeCount++;
+					n++;
+				}
+				if(primeCount > maxPrimeCount)
+				{
+					maxPrimeCount = primeCount;
+					maxA = a;
+					maxB = b;
+					maxN = n;
+				}
+				System.out.println(a + ":" + b + ":" + maxA + ":" + maxB + ":" + maxN);
+			}
+		}
+		System.out.println(maxA + " : " + maxB + " : " + maxN);
+	}
+}
