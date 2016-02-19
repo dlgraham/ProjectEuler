@@ -1,0 +1,26 @@
+
+public class DigitFifthPowers
+{
+	public static void main(String[] args)
+	{
+		int sum = 0;
+		int temp;
+		int tempsum;
+		for(int i = 10; i < 1000000; i++)
+		{
+			temp = i;
+			tempsum = 0;
+			while(temp > 0)
+			{
+				tempsum += Math.pow(temp % 10, 5);
+				temp /= 10;
+			}
+			if(tempsum == i)
+			{
+				sum += tempsum;
+				System.out.println(tempsum);
+			}
+		}
+		System.out.println(sum);
+	}
+}
