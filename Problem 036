@@ -1,0 +1,33 @@
+public class DoubleBasePalindromes
+{
+	public static void main(String[] args)
+	{
+		int sum = 0;
+		for(int i = 0; i < 1000000; i++)
+		{
+			int temp = i;
+			if(isPalindrome(Integer.toString(i)))
+			{
+				String binary = Integer.toBinaryString(i);
+				if(isPalindrome(binary))
+				{
+					System.out.println(i);
+					sum += i;
+				}
+			}
+		}
+		System.out.println(sum);
+	}
+	
+	public static boolean isPalindrome(String str)
+	{
+		for(int i = 0; i < str.length() / 2; i++)
+		{
+			if(str.charAt(i) != str.charAt(str.length() - (1 + i)))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
