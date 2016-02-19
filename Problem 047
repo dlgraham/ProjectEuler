@@ -1,0 +1,65 @@
+import java.util.Vector;
+
+public class DistinctPrimesFactors
+{
+	public static void main(String[] args)
+	{
+		Vector<Integer> primes = new Vector<Integer>();
+		final int MAX = 500000;
+		for(int i = 2; i < MAX; i++)
+		{
+			if(isPrime(i))
+			{
+				primes.add(i);
+			}
+		}
+		Vector<Integer> distinctFactors = new Vector<Integer>();
+		for(int i = 0; i < MAX; i++)
+		{
+			distinctFactors.add(0);
+		}
+		for(int i = 0; i < MAX; i++)
+		{
+			int temp = i;
+			for(int j = 0; j < primes.size() && j < temp && distinctFactors.get(i) < 5; j++)
+			{
+				boolean divisible = false;
+				while(temp % primes.get(j) == 0)
+				{
+					temp /= primes.get(j);
+					divisible = true;
+				}
+				if(divisible == true)
+				{
+					distinctFactors.set(i, distinctFactors.get(i) + 1);
+				}
+			}
+		}
+		boolean found = false;
+		for(int i = 0; i < MAX && found == false; i++)
+		{
+			if(distinctFactors.get(i) == 4 && distinctFactors.get(i+1) == 4 && distinctFactors.get(i+2) == 4 && distinctFactors.get(i+3) == 4)
+			{
+				System.out.println(i);
+				found = true;
+			}
+		}
+	}
+	
+	
+	
+	
+	private static boolean isPrime(int num)
+	{
+		if (num == 1)
+			return false;
+		if (num == 2)
+			return true;
+		if (num % 2 == 0)
+			return false;
+		for (int i = 3; i * i <= num; i += 2)
+			if (num % i == 0)
+				return false;
+		return true;
+	}
+}
