@@ -1,0 +1,206 @@
+//broke trying to create faster solution
+import java.util.Collections;
+import java.util.Vector;
+
+public class LexicographicPermutations
+{
+	public static void main(String[] args)
+	{
+		Vector<String> number = new Vector<String>();
+		for(int i = 0; i <=9; i++)
+		{
+			number.add(i + "");
+		}
+		Vector<String> temp = new Vector<String>();
+		int count = 1;
+		int permutation = 10;
+		while(count < permutation)
+		{
+			System.out.println(number);
+			if(Integer.parseInt(number.get(9)) > Integer.parseInt(number.get(8)))
+			{
+				Collections.swap(number, 9, 8);
+			}
+			else if(Integer.parseInt(number.get(8)) > Integer.parseInt(number.get(7)))
+			{
+				Collections.swap(number, 9, 7);
+				temp.clear();
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(8, temp.get(0));
+				number.set(9, temp.get(1));
+			}
+			else if(Integer.parseInt(number.get(7)) > Integer.parseInt(number.get(6)))
+			{
+				Collections.swap(number, 7, 6);
+				temp.clear();
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(7, temp.get(0));
+				number.set(8, temp.get(1));
+				number.set(9, temp.get(2));
+			}
+			else if(Integer.parseInt(number.get(6)) > Integer.parseInt(number.get(5)))
+			{
+				Collections.swap(number, 9, 5);
+				temp.clear();
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(6, temp.get(0));
+				number.set(7, temp.get(1));
+				number.set(8, temp.get(2));
+				number.set(9, temp.get(3));
+			}
+			else if(Integer.parseInt(number.get(5)) > Integer.parseInt(number.get(4)))
+			{
+				Collections.swap(number, 9, 4);
+				temp.clear();
+				temp.add(number.get(5));
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(5, temp.get(0));
+				number.set(6, temp.get(1));
+				number.set(7, temp.get(2));
+				number.set(8, temp.get(3));
+				number.set(9, temp.get(4));
+			}
+			else if(Integer.parseInt(number.get(4)) > Integer.parseInt(number.get(3)))
+			{
+				Collections.swap(number, 9, 3);
+				temp.clear();
+				temp.add(number.get(4));
+				temp.add(number.get(5));
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(4, temp.get(0));
+				number.set(5, temp.get(1));
+				number.set(6, temp.get(2));
+				number.set(7, temp.get(3));
+				number.set(8, temp.get(4));
+				number.set(9, temp.get(5));
+			}
+			else if(Integer.parseInt(number.get(3)) > Integer.parseInt(number.get(2)))
+			{
+				Collections.swap(number, 9, 2);
+				temp.clear();
+				temp.add(number.get(3));
+				temp.add(number.get(4));
+				temp.add(number.get(5));
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(3, temp.get(0));
+				number.set(4, temp.get(1));
+				number.set(5, temp.get(2));
+				number.set(6, temp.get(3));
+				number.set(7, temp.get(4));
+				number.set(8, temp.get(5));
+				number.set(9, temp.get(6));
+			}
+			else if(Integer.parseInt(number.get(2)) > Integer.parseInt(number.get(1)))
+			{
+				Collections.swap(number, 9, 1);
+				temp.clear();
+				temp.add(number.get(2));
+				temp.add(number.get(3));
+				temp.add(number.get(4));
+				temp.add(number.get(5));
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(2, temp.get(0));
+				number.set(3, temp.get(1));
+				number.set(4, temp.get(2));
+				number.set(5, temp.get(3));
+				number.set(6, temp.get(4));
+				number.set(7, temp.get(5));
+				number.set(8, temp.get(6));
+				number.set(9, temp.get(7));
+			}
+			else if(Integer.parseInt(number.get(1)) > Integer.parseInt(number.get(0)))
+			{
+				Collections.swap(number, 9, 0);
+				temp.clear();
+				temp.add(number.get(1));
+				temp.add(number.get(2));
+				temp.add(number.get(3));
+				temp.add(number.get(4));
+				temp.add(number.get(5));
+				temp.add(number.get(6));
+				temp.add(number.get(7));
+				temp.add(number.get(8));
+				temp.add(number.get(9));
+				Collections.sort(temp);
+				number.set(1, temp.get(0));
+				number.set(2, temp.get(1));
+				number.set(3, temp.get(2));
+				number.set(4, temp.get(3));
+				number.set(5, temp.get(4));
+				number.set(6, temp.get(5));
+				number.set(7, temp.get(6));
+				number.set(8, temp.get(7));
+				number.set(9, temp.get(8));
+			}
+			else
+			{
+				System.out.println("No Solution");
+				count = permutation - 1;
+			}
+			count++;
+		}
+		System.out.println(number);
+	
+		
+		
+		
+		
+		
+		
+//		long i = 123456788L;
+//		int total = 0;
+//		String test;
+//		while(total < 1000000)
+//		{
+//			i++;
+//			test = i + "";
+//			if(test.length() != 10)
+//			{
+//				test = "0" + test;
+//			}
+//			if(test.length() - test.replace("0", "").length() == 1
+//				&& test.length() - test.replace("1", "").length() == 1
+//				&& test.length() - test.replace("2", "").length() == 1
+//				&& test.length() - test.replace("3", "").length() == 1
+//				&& test.length() - test.replace("4", "").length() == 1
+//				&& test.length() - test.replace("5", "").length() == 1
+//				&& test.length() - test.replace("6", "").length() == 1
+//				&& test.length() - test.replace("7", "").length() == 1
+//				&& test.length() - test.replace("8", "").length() == 1
+//				&& test.length() - test.replace("9", "").length() == 1)
+//			{
+//				total++;
+//				if(total % 10000 == 0)
+//				{
+//					System.out.println(total / 10000 + " : " + i);
+//				}
+//			}
+//		}
+//		System.out.println(i);
+	}
+}
