@@ -1,0 +1,55 @@
+
+public class Amicable
+{
+	int num;
+	int amicable;
+	
+	public Amicable(int num)
+	{
+		this.num = num;
+		int sum = 0;
+		for(int i = 1; i <= num / 2; i++)
+		{
+			if(num % i == 0)
+			{
+				sum += i;
+			}
+		}
+		amicable = sum;
+	}
+	
+	public int getAmicable()
+	{
+		return amicable;
+	}
+}
+import java.util.Vector;
+
+public class AmicableNumbers
+{
+	public static void main(String[] args)
+	{
+		Vector<Amicable> list = new Vector<Amicable>();
+		for(int i = 0; i <= 10000; i++)
+		{
+			list.add(new Amicable(i));
+		}
+		int total = 0;
+		for(int i = 0; i <= list.size(); i++)
+		{
+			try{
+				if(list.get(list.get(i).getAmicable()).getAmicable() == i && list.get(i).getAmicable() != i)
+				{
+					System.out.println(i + " : " + list.get(i).getAmicable());
+					
+					total += i;
+				}
+			}
+			catch(Exception e)
+			{
+				
+			}
+		}
+		System.out.println(total);
+	}
+}
