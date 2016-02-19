@@ -1,0 +1,56 @@
+import java.util.Vector;
+
+public class GoldbachsOtherConjecture
+{
+	public static void main(String[] args)
+	{
+		Vector<Boolean> goldbach = new Vector<Boolean>();
+		final int MAX = 100000;
+		int test;
+		for(int i = 0; i < MAX; i++)
+		{
+			if(i % 2 == 0)
+			{
+				goldbach.add(true);
+			}
+			else
+			{
+				goldbach.add(false);
+			}
+		}
+		
+		for(int i = 1; i < MAX; i += 2)
+		{
+			if(isPrime(i))
+			{
+				for(int j = 0; i + 2 * j * j < MAX; j++)
+				{
+					test = i + 2 * j * j;
+					if(!goldbach.get(test))
+					{
+						goldbach.set(test, true);
+					}
+				}
+			}
+		}
+		for(int i = 1; i < MAX; i++)
+		{
+			if(!goldbach.get(i))
+			{
+				System.out.println(i);
+			}
+		}
+	}
+	
+	private static boolean isPrime(int num)
+	{
+		if (num == 2)
+        	return true;
+        if (num % 2 == 0)
+        	return false;
+        for (int i = 3; i * i <= num; i += 2)
+        	if (num % i == 0) return false;
+        return true;
+	}
+	
+}
