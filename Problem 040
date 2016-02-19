@@ -1,0 +1,30 @@
+
+public class ChampernownesConstant
+{
+	public static void main(String[] args)
+	{
+		StringBuffer champernownes = new StringBuffer();
+		champernownes.append("123456789");
+		for(int i = 1; champernownes.length() < 1000000; i++)
+		{
+			StringBuffer ones = new StringBuffer();
+			for(int j = 0; j < 10; j++)
+			{
+				ones.append(i + "" + j);
+			}
+			if(i < 5)
+			{
+				System.out.println(champernownes);
+			}
+			champernownes.append(ones); 
+		}
+		int d1 = Integer.parseInt(champernownes.substring(0, 1));
+		int d10 = Integer.parseInt(champernownes.substring(9, 10));
+		int d100 = Integer.parseInt(champernownes.substring(99, 100));
+		int d1000 = Integer.parseInt(champernownes.substring(999, 1000));
+		int d10000 = Integer.parseInt(champernownes.substring(9999, 10000));
+		int d100000 = Integer.parseInt(champernownes.substring(99999, 100000));
+		int d1000000 = Integer.parseInt(champernownes.substring(999999, 1000000));
+		System.out.println(d1 * d10 * d100 * d1000 * d10000 * d100000 * d1000000);
+	}
+}
